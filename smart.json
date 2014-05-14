@@ -1,0 +1,11 @@
+{
+  "name": "presence-live-caret",
+  "description": "Track caret position",
+  "homepage": "https://github.com/dburles/meteor-presence-live-caret",
+  "author": "David Burles",
+  "version": "0.1.0",
+  "git": "https://github.com/dburles/meteor-presence-live-caret.git",
+  "packages": {
+    "presence": "0.4.5"
+  }
+}

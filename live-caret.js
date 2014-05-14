@@ -1,5 +1,5 @@
 $(function() {
-  $('input[type=text]').bind('keypress click', function() {
+  $('input[type=text], textarea').bind('keypress click', function() {
     var range = $(this).range();
     Session.set('caretRange', {
       name: $(this).attr('name'),

@@ -16,26 +16,24 @@ Presence.state = function() {
   };
 };
 
+var getPos = function(fields) {
+  var caretRange = fields.state.caretRange;
+  var position = caretRange.end;
+  var coordinates = getCaretCoordinates($('[name=' + caretRange.name + ']')[0], position);
+  console.log(position, coordinates);
+};
+
 Meteor.startup(function() {
   Deps.autorun(function() {
     Presences.find(Session.get('caretWatchConnectionId')).observeChanges({
       added: function(id, fields) {
-        var caretRange = fields.state.caretRange;
-        var position = caretRange.end;
-        var coordinates = getCaretCoordinates($('[name=' + caretRange.name + ']')[0], position);
-        console.log('added', position, coordinates);
+        getPos(fields);
       },
       changed: function(id, fields) {
-        var caretRange = fields.state.caretRange;
-        var position = caretRange.end;
-        var coordinates = getCaretCoordinates($('[name=' + caretRange.name + ']')[0], position);
-        console.log('changed', position, coordinates);
+        getPos(fields);
       },
       removed: function(id) {
-        var caretRange = fields.state.caretRange;
-        var position = caretRange.end;
-        var coordinates = getCaretCoordinates($('[name=' + caretRange.name + ']')[0], position);
-        console.log('removed', position, coordinates);
+        getPos(fields);
       }
     });
   });

@@ -1,10 +1,15 @@
+liveCaret = {};
+
+// default
+liveCaret.bindTo = 'body';
+
 var eventMap = [
   'form.live-caret input[type=text]',
   'form.live-caret textarea',
   'form.live-caret input[type=email]'
 ].join(", ");
 
-bindLiveCaret = function() {
+liveCaret.bindLiveCaret = function() {
   // keep track of our position and pass to our presence
   $(eventMap).bind('keyup click', function() {
     var form = $(this).parents('form');
@@ -38,8 +43,6 @@ var createCaret = function(id) {
 
   var rect = document.createElement('div');
 
-  document.body.appendChild(rect);
-
   rect.setAttribute('data-id', id);
   rect.style.position = 'absolute';
   rect.style.backgroundColor = _.first(_.shuffle(['red', 'green', 'orange', 'blue', 'purple']));
@@ -48,15 +51,16 @@ var createCaret = function(id) {
   rect.style.display = 'none';
   rect.className = 'lcaret';
 
+  $(liveCaret.bindTo).append(rect);
+
   console.log('createCaret ' + id);
 };
 
 var setCaretPosition = function(id, form, fieldName, coordinates) {
   var field = $('form#' + form + ' [name=' + fieldName + ']')[0];
-  // var caret = $('[data-caret-name=' + name + ']');
   var caret = $('.lcaret[data-id=' + id + ']');
-  caret.css('display', 'block');
 
+  caret.css('display', 'block');
   caret.css('top', field.offsetTop - field.scrollTop + coordinates.top);
   caret.css('left', field.offsetLeft - field.scrollLeft + coordinates.left);
 
@@ -84,10 +88,9 @@ Meteor.startup(function() {
       'state.route': Router.current() && Router.current().path
     }).observeChanges({
       added: function(id, fields) {
-        // sometimes this isn't yet set
-   
-        console.log('test');
         createCaret(id);
+
+        // sometimes this isn't yet set
         if (! fields.state.caretRange)
           return;
         updateCaret(id, fields);

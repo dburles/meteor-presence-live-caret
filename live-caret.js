@@ -73,9 +73,6 @@ Meteor.startup(function() {
       },
       changed: function(id, fields) {
         updateCaret(fields);
-      },
-      removed: function(id) {
-        updateCaret(fields);
       }
     });
   });

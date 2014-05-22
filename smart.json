@@ -6,6 +6,7 @@
   "version": "0.1.0",
   "git": "https://github.com/dburles/meteor-presence-live-caret.git",
   "packages": {
-    "presence": "0.4.5"
+    "presence": "0.4.5",
+    "caret-position": "2.1.0-3"
   }
 }

@@ -1,6 +1,6 @@
 $(function() {
   // keep track of our position and pass to our presence
-  $('input[type=text], textarea').bind('keypress click', function() {
+  $('input[type=text], textarea').bind('keyup click', function() {
     var range = $(this).range();
     Session.set('caretRange', {
       name: $(this).attr('name'),

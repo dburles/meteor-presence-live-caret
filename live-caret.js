@@ -74,7 +74,7 @@ var updateCaret = function(id, fields) {
 };
 
 var removeCaret = function(id) {
-  $('.caret [data-id=' + id + ']').remove();
+  $('.lcaret[data-id=' + id + ']').remove();
 };
 
 Meteor.startup(function() {

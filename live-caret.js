@@ -32,12 +32,6 @@ Presence.state = function() {
   };
 };
 
-Meteor.startup(function() {
-  Deps.autorun(function() {
-    Presences.find();
-  });
-});
-
 var createCaret = function(id) {
   var fontSize = '12px';
 
